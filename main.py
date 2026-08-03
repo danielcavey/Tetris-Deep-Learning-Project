@@ -1,4 +1,5 @@
 import pygame, sys
+from grid import Grid
 
 pygame.init()
 dark_blue = (44,44,127)                             # rgb for background
@@ -8,6 +9,9 @@ pygame.display.set_caption("Python Tetris")         # Header for the window
 
 clock = pygame.time.Clock()
 
+game_grid = Grid()
+game_grid.print_grid()
+
 # Initiates game loop
 while True: 
     for event in pygame.event.get():                # Cycle through all the events that have occurred
@@ -16,5 +20,7 @@ while True:
             sys.exit()
 
     screen.fill(dark_blue)                          #Set screen background color
+    game_grid.draw(screen)
+
     pygame.display.update()                         # Update display after all the events that have occurred have been resolved
     clock.tick(60)                                  # The while loop will run 60 times/second. i.e the frame rate
