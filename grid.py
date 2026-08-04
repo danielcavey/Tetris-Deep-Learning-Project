@@ -9,14 +9,20 @@ class Grid:
         self.grid = [[0 for j in range(self.num_cols)] for i in range(self.num_rows)]
         self.colors = Colours.get_cell_colours()                                                # Obtain list of colours from colours.py
 
-    # Function to print the grid in the terminal
+    # Method to print the grid in the terminal
     def print_grid(self):
         for row in range(self.num_rows):
             for column in range(self.num_cols):
                 print(self.grid[row][column], end = " ")
             print()
 
-    # Function to display the screen with cells coloured according to game state
+    # Method to determine if an arbitraty point (row, column) is inside the grid
+    def is_inside(self, row, column):
+        if row >= 0 and row < self.num_rows and column >=0 and column < self.num_cols:
+            return True
+        return False
+
+    # Method to colour cells on screen according to game state
     def draw(self, screen):
         for row in range(self.num_rows):
             for column in range(self.num_cols):

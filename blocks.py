@@ -3,7 +3,6 @@ from position import Position
 
 # Different child class for each tetromino type inhertiting from parent class Block
 
-
 # Child class for L-shaped block
 class LBlock(Block):
     def __init__(self):
@@ -14,6 +13,7 @@ class LBlock(Block):
             2: [Position(1,0), Position(1,1), Position(1,2), Position(2,0)],                # Cells that would be occupied by tile under 180 degree roation clockwise
             3: [Position(0,0), Position(0,1), Position(1,1), Position(2,1)]                 # Cells that would be occupied by tile under 270 degree roation clockwise
         }
+        self.move(0,3)                  # Move tetromino to default start in the middle of the top row
 
 # Child class for J-shaped block
 class JBlock(Block):
@@ -25,6 +25,7 @@ class JBlock(Block):
             2: [Position(1,0), Position(1,1), Position(1,2), Position(2,2)],                # Cells that would be occupied by tile under 180 degree roation clockwise
             3: [Position(0,1), Position(1,1), Position(2,0), Position(2,1)]                 # Cells that would be occupied by tile under 270 degree roation clockwise
         }
+        self.move(0,3)                  # Move tetromino to default start in the middle of the top row
 
 # Child class for I-shaped block
 class IBlock(Block):
@@ -36,6 +37,7 @@ class IBlock(Block):
             2: [Position(2,0), Position(2,1), Position(2,2), Position(2,3)],                # Cells that would be occupied by tile under 180 degree roation clockwise
             3: [Position(0,1), Position(1,1), Position(2,1), Position(3,1)]                 # Cells that would be occupied by tile under 270 degree roation clockwise
         }
+        self.move(-1,3)                 # Move tetromino to default start in the middle of the top row. Note I-block has to be shifted up one additional space
 
 # Child class for O-shaped block
 class OBlock(Block):
@@ -44,6 +46,7 @@ class OBlock(Block):
         self.cells = {
             0: [Position(0,0), Position(1,0), Position(0,1), Position(1,1)]                 # Cells that would be occupied by tile. No impact of rotation here.
         }
+        self.move(0,4)                  # Move tetromino to default start in the middle of the top row. Note O-block has to be shifted right one additional space
 
 # Child class for S-shaped block
 class SBlock(Block):
@@ -55,6 +58,7 @@ class SBlock(Block):
             2: [Position(1,1), Position(1,2), Position(2,0), Position(2,1)],                # Cells that would be occupied by tile under 180 degree roation clockwise
             3: [Position(0,0), Position(1,0), Position(1,1), Position(2,1)]                 # Cells that would be occupied by tile under 270 degree roation clockwise
         }
+        self.move(0,3)                  # Move tetromino to default start in the middle of the top row
 
 # Child class for T-shaped block
 class TBlock(Block):
@@ -66,6 +70,7 @@ class TBlock(Block):
             2: [Position(1,0), Position(1,1), Position(1,2), Position(2,1)],                # Cells that would be occupied by tile under 180 degree roation clockwise
             3: [Position(0,1), Position(1,0), Position(1,1), Position(2,1)]                 # Cells that would be occupied by tile under 270 degree roation clockwise
         }
+        self.move(0,3)                  # Move tetromino to default start in the middle of the top row
 
 # Child class for Z-shaped block
 class ZBlock(Block):
@@ -77,3 +82,4 @@ class ZBlock(Block):
             2: [Position(1,0), Position(1,1), Position(2,1), Position(2,2)],                # Cells that would be occupied by tile under 180 degree roation clockwise
             3: [Position(0,1), Position(1,0), Position(1,1), Position(2,0)]                 # Cells that would be occupied by tile under 270 degree roation clockwise
         }
+        self.move(0,3)                  # Move tetromino to default start in the middle of the top row
