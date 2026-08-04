@@ -1,3 +1,4 @@
+# RGB for tetromino colours
 class Colours:
     dark_grey = (26, 31, 40)
     green = (47, 230, 23)
