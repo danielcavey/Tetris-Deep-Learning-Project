@@ -25,6 +25,8 @@ while True:
                 game.move_right()
             if event.key == pygame.K_DOWN:         # Check if the pressed key is down arrow
                 game.move_down()
+            if event.key == pygame.K_UP:
+                game.rotate()
 
     screen.fill(dark_blue)                          #Set screen background color
     game.draw(screen)

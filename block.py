@@ -33,6 +33,19 @@ class Block:
             moved_tiles.append(position)
         return moved_tiles
 
+    # Method to rotate a block
+    def rotate(self):
+        self.rotation_state += 1
+        if self.rotation_state == len(self.cells):                  # If loop to check if a full rotation has been completed and if counter should be cycled back to the start
+            self.rotation_state = 0
+
+    # Method to unrotate a block
+    # Will be used if a rotation takes a block into an illegal position
+    def undo_rotation(self):
+        self.rotation_state -=1
+        if self.rotation_state == 0:
+            self.rotation_state = len(self.cells)-1
+
     # Method to colour cells according to the tetromino
     def draw(self, screen):
         tiles = self.get_cell_positions()                             #Identify relevant cells for each tetromino block

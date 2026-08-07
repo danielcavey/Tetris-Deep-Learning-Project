@@ -40,6 +40,11 @@ class Game:
         if self.block_inside() == False:                    # If the movement down took us outside the grid, then undo that movement
             self.current_block.move(-1,0)
 
+    def rotate(self):
+        self.current_block.rotate()
+        if self.block_inside() == False:
+            self.current_block.undo_rotation()
+
     # Method that uses the is_inside method to check if a tetromino is entirely within the grid
     def block_inside(self):
         tiles = self.current_block.get_cell_positions()     # Get cell positions
