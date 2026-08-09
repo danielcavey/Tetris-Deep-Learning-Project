@@ -22,6 +22,12 @@ class Grid:
             return True
         return False
 
+    # Method to check in a cell is free
+    def is_empty(self, row, column):
+        if self.grid[row][column] == 0:
+            return True
+        return False
+
     # Method to colour cells on screen according to game state
     def draw(self, screen):
         for row in range(self.num_rows):

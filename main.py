@@ -12,6 +12,9 @@ clock = pygame.time.Clock()
 # Initiate a game
 game = Game()
 
+GAME_UPDATE = pygame.USEREVENT
+pygame.time.set_timer(GAME_UPDATE, 200)             # Trigger the GAME_UPDATE event every 200 miliseconds
+
 # Initiates game loop
 while True: 
     for event in pygame.event.get():                # Cycle through all the events that have occurred
@@ -27,9 +30,11 @@ while True:
                 game.move_down()
             if event.key == pygame.K_UP:
                 game.rotate()
+        if event.type == GAME_UPDATE:
+            game.move_down()                        # Tile drop without user input
 
-    screen.fill(dark_blue)                          #Set screen background color
-    game.draw(screen)
+    screen.fill(dark_blue)                          # Set screen background color
+    game.draw(screen)                               # Draw the current state of the screen 
 
     pygame.display.update()                         # Update display after all the events that have occurred have been resolved
     clock.tick(60)                                  # The while loop will run 60 times/second. i.e the frame rate

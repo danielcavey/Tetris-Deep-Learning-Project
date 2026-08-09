@@ -25,24 +25,44 @@ class Game:
     # Method to move block to left
     def move_left(self):
         self.current_block.move(0,-1)
-        if self.block_inside() == False:                    # If the movement to the left took us outside the grid, then undo that movement
+        if self.block_inside() == False or self.block_fits() == False:   # If the movement to the left took us outside the grid or hits another block, then undo that movement
             self.current_block.move(0,1)
 
     # Method to move block to right
     def move_right(self):
         self.current_block.move(0,1)
-        if self.block_inside() == False:                    # If the movement to the right took us outside the grid, then undo that movement
+        if self.block_inside() == False  or self.block_fits() == False:   # If the movement to the right took us outside the grid or hits another block, then undo that movement:                    # If the movement to the right took us outside the grid, then undo that movement
             self.current_block.move(0,-1)
 
     # Method to move block to down
     def move_down(self):
         self.current_block.move(1,0)
-        if self.block_inside() == False:                    # If the movement down took us outside the grid, then undo that movement
+        if self.block_inside() == False or self.block_fits() == False:     # If the movement down took us outside the grid or onto another block, then undo that movement
             self.current_block.move(-1,0)
+            self.lock_block()                               # Lock the block in place since it hit the bottom of the screen
 
+    # Method to lock block in place
+    # Works by 1.) updating underlying grid values; 2.) relinguishing control of current block, passing it on to new block, and creating a new "next block"
+    def lock_block(self):
+        tiles = self.current_block.get_cell_positions()
+        for position in tiles:
+            self.grid.grid[position.row][position.column] = self.current_block.id                   # Update grid values where current block lives
+        self.current_block = self.next_block                                                        # Change current block to next block
+        self.next_block = self.get_random_block()                                                   # Change next block to a random choice
+
+    # Method to check if a block fits
+    # Does this by running is_empty() method for every tile of the block
+    def block_fits(self):
+        tiles = self.current_block.get_cell_positions()
+        for tile in tiles:
+            if self.grid.is_empty(tile.row, tile.column) == False:
+                return False
+        return True
+
+    # Method to rotate block
     def rotate(self):
         self.current_block.rotate()
-        if self.block_inside() == False:
+        if self.block_inside() == False or self.block_fits() == False:     # If the rotation talks the block outside the grid or onto another block, then undo that rotation
             self.current_block.undo_rotation()
 
     # Method that uses the is_inside method to check if a tetromino is entirely within the grid
