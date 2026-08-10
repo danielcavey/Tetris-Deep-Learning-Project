@@ -49,6 +49,7 @@ class Game:
             self.grid.grid[position.row][position.column] = self.current_block.id                   # Update grid values where current block lives
         self.current_block = self.next_block                                                        # Change current block to next block
         self.next_block = self.get_random_block()                                                   # Change next block to a random choice
+        self.grid.clear_full_rows()                                                                 # Handle any rows that have completed by block locking into place
 
     # Method to check if a block fits
     # Does this by running is_empty() method for every tile of the block
