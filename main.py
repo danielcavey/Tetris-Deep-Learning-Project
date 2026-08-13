@@ -22,15 +22,18 @@ while True:
             pygame.quit()
             sys.exit()
         if event.type == pygame.KEYDOWN:            # Check if the event is the user pressing a key
-            if event.key == pygame.K_LEFT:          # Check if the pressed key is left arrow
+            if game.game_over == True:
+                game.game_over = False
+                game.reset()
+            if event.key == pygame.K_LEFT and game.game_over == False:          # Check if the pressed key is left arrow
                 game.move_left()
-            if event.key == pygame.K_RIGHT:         # Check if the pressed key is right arrow
+            if event.key == pygame.K_RIGHT and game.game_over == False:         # Check if the pressed key is right arrow
                 game.move_right()
-            if event.key == pygame.K_DOWN:         # Check if the pressed key is down arrow
+            if event.key == pygame.K_DOWN and game.game_over == False:         # Check if the pressed key is down arrow
                 game.move_down()
-            if event.key == pygame.K_UP:
+            if event.key == pygame.K_UP and game.game_over == False:
                 game.rotate()
-        if event.type == GAME_UPDATE:
+        if event.type == GAME_UPDATE and game.game_over == False:
             game.move_down()                        # Tile drop without user input
 
     screen.fill(dark_blue)                          # Set screen background color

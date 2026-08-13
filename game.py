@@ -9,6 +9,7 @@ class Game:
         self.blocks = [IBlock(), JBlock(), LBlock(), OBlock(), SBlock(), TBlock(), ZBlock()]                    # List of possible blocks
         self.current_block = self.get_random_block()                                                            
         self.next_block = self.get_random_block()
+        self.game_over = False
 
     # Method to randomly select a block
     def get_random_block(self):
@@ -50,6 +51,14 @@ class Game:
         self.current_block = self.next_block                                                        # Change current block to next block
         self.next_block = self.get_random_block()                                                   # Change next block to a random choice
         self.grid.clear_full_rows()                                                                 # Handle any rows that have completed by block locking into place
+        if self.block_fits() == False:
+            self.game_over = True
+            
+    def reset(self):
+        self.grid.reset()
+        self.blocks = [IBlock(), JBlock(), LBlock(), OBlock(), SBlock(), TBlock(), ZBlock()]                    # List of possible blocks
+        self.current_block = self.get_random_block()
+        self.next_block = self.get_random_block()
 
     # Method to check if a block fits
     # Does this by running is_empty() method for every tile of the block
