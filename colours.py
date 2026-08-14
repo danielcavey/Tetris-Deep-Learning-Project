@@ -1,4 +1,4 @@
-# RGB for tetromino colours
+# RGB for tetromino colours and other used colours
 class Colours:
     dark_grey = (26, 31, 40)
     green = (47, 230, 23)
@@ -8,6 +8,9 @@ class Colours:
     purple = (166, 0, 247)
     cyan = (21, 204, 209)
     blue = (13, 64, 216)
+    white = (255, 255, 255)
+    dark_blue = (44,44,127)
+    light_blue = (59, 85, 162)                        
 
     @classmethod
     def get_cell_colours(cls):

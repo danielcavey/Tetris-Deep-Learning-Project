@@ -59,18 +59,20 @@ class Grid:
                 self.move_row_down(row, completed)
         return completed
 
+    # Method to reset the grid after a game over
     def reset(self):
-        for row in range(self.num_rows):
+        # Embedded for loops to iterate over every square in the grid by row and column
+        for row in range(self.num_rows):                        
             for column in range(self.num_cols):
-                self.grid[row][column]=0
+                self.grid[row][column]=0                    # Set square to be 0
 
     # Method to colour cells on screen according to game state
     def draw(self, screen):
         for row in range(self.num_rows):
             for column in range(self.num_cols):
                 cell_value = self.grid[row][column]
-                cell_rect = pygame.Rect(column*self.cell_size+1,        # x coordinate of rectangle top left. Offset by 1 to have grid lines
-                                        row*self.cell_size+1,           # y coordinate of rectangle top left. Offset by 1 to have grid lines
+                cell_rect = pygame.Rect(column*self.cell_size+11,        # x coordinate of rectangle top left. Offset by 1 to have grid lines
+                                        row*self.cell_size+11,           # y coordinate of rectangle top left. Offset by 1 to have grid lines
                                         self.cell_size-1,               # rectangle width. Offset by 1 to have grid lines
                                         self.cell_size-1                # rectangle height. Offset by 1 to have grid lines
                                         )

@@ -47,11 +47,13 @@ class Block:
             self.rotation_state = len(self.cells)-1
 
     # Method to colour cells according to the tetromino
-    def draw(self, screen):
+    # offset parameters used so that next_block can be rendered outside of the grid
+    def draw(self, screen, offset_x, offset_y):
         tiles = self.get_cell_positions()                             #Identify relevant cells for each tetromino block
         for tile in tiles:
-            tile_rect = pygame.Rect(tile.column * self.cell_size+1,
-                                    tile.row * self.cell_size+1,
+            # Cell to draw the tile in the screen
+            tile_rect = pygame.Rect(offset_x + tile.column * self.cell_size,
+                                    offset_y + tile.row * self.cell_size ,
                                     self.cell_size-1,
                                     self.cell_size-1
                                     )
